@@ -1,0 +1,167 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    </head>
+
+<body>
+    <div class="container p-3">
+        <div class="text-center"><h1>Register User</h1></div>
+    <form class="border border-secondary rounded p-2 mt-3" action="adduser/" method="POST">
+        {% csrf_token %}
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="validationDefault01">First name</label>
+            <input type="text" class="form-control" name="fname" id="validationDefault01" placeholder="First name"  required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="validationDefault02">Last name</label>
+            <input type="text" class="form-control" name="lname" id="validationDefault02" placeholder="Last name"  required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="validationDefault02">Age</label>
+            <input type="number" class="form-control" name="age" id="validationDefault02" placeholder="Age"  required>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="validationDefault02">State</label>
+            <select name="state" class="form-control">
+                {% for state in state %}
+                <option value="{{ state.0 }}">{{ state.1 }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+        
+        <div class="form-row">
+          <div class="col-md-6 mb-3">
+            <label for="validationDefault03">City</label>
+            <input type="text" class="form-control" name="city" id="validationDefault03" placeholder="City" required>
+          </div>
+         
+          <div class="col-md-6 mb-3">
+            <label for="validationDefault05">Zip</label>
+            <input type="text" class="form-control" name="zip" id="validationDefault05" placeholder="Zip" required>
+          </div>
+        </div>
+       
+        <button class="btn btn-primary" type="submit">Submit form</button>
+      </form>
+      <div class="text-center"><h1>List of User</h1></div>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Age</th>
+        <th scope="col">State</th>
+        <th scope="col">City</th>
+        <th scope="col">Zip Code</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for emp in emp%}
+      <tr>
+        <th scope="row">{{emp.id}}</th>
+        <td>{{emp.fname}}</td>
+        <td>{{emp.lname}}</td>
+        <td>{{emp.age}}</td>
+        <td>{{emp.state}}</td>
+        <td>{{emp.city}}</td>
+        <td>{{emp.zip}}</td>
+      </tr>
+      {%endfor%}
+      
+    </tbody>
+  </table>
+  <div class="text-center"><h1>Searched By Particular ID[Get Method]</h1>
+    <h4>returns single object</h4></div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Age</th>
+        <th scope="col">State</th>
+        <th scope="col">City</th>
+        <th scope="col">Zip Code</th>
+      </tr>
+    </thead>
+    <tbody>
+    
+      <tr>
+        <th scope="row">{{e.id}}</th>
+        <td>{{e.fname}}</td>
+        <td>{{e.lname}}</td>
+        <td>{{e.age}}</td>
+        <td>{{e.state}}</td>
+        <td>{{e.city}}</td>
+        <td>{{e.zip}}</td>
+      </tr>
+    
+      
+    </tbody>
+</table>
+<div class="text-center"><h1>Filtering Data using name[filter method]</h1>
+<h4>returns multiple objects</h4></div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Age</th>
+        <th scope="col">State</th>
+        <th scope="col">City</th>
+        <th scope="col">Zip Code</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for data in data2 %}
+      <tr>
+        <th scope="row">{{data.id}}</th>
+        <td>{{data.fname}}</td>
+        <td>{{data.lname}}</td>
+        <td>{{data.age}}</td>
+        <td>{{data.state}}</td>
+        <td>{{data.city}}</td>
+        <td>{{data.zip}}</td>
+      </tr>
+    {%endfor%}
+      
+    </tbody>
+</table>
+<div class="text-center"><h1>Filtering Data with Exclude</h1>
+    </div>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Age</th>
+        <th scope="col">State</th>
+        <th scope="col">City</th>
+        <th scope="col">Zip Code</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for data in data3%}
+    <tr>
+        <th scope="row">{{data.id}}</th>
+        <td>{{data.fname}}</td>
+        <td>{{data.lname}}</td>
+        <td>{{data.age}}</td>
+        <td>{{data.state}}</td>
+        <td>{{data.city}}</td>
+        <td>{{data.zip}}</td>
+      </tr>
+    
+     {%endfor%} 
+    </tbody>
+</table>
+</div>
+</body>
+  </html>
