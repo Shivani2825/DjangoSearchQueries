@@ -42,10 +42,10 @@ STATE_CHOICES = [
 class Emp(models.Model):
     fname=models.CharField(max_length=100)
     lname=models.CharField(max_length=100)
-    age=models.IntegerField(null=None)
-    city=models.CharField(max_length=100)
-    zip=models.CharField(max_length=10,default="None")
-    state = models.CharField(max_length=2, choices=STATE_CHOICES,default="None")
+    age=models.IntegerField(blank=True,default=0)
+    city=models.CharField(max_length=100,blank=True,)
+    zip=models.CharField(max_length=10,default="None",blank=True)
+    state = models.CharField(max_length=2, choices=STATE_CHOICES,default="None",blank=True)
 
 
     def __str__(self) -> str:
